@@ -14,9 +14,7 @@ dishRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(dishes);
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .post((req,res,next) => {
     Dishes.create(req.body)
@@ -26,9 +24,7 @@ dishRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(dish);
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .put((req, res, next) => {
     res.statusCode = 403;
@@ -41,9 +37,7 @@ dishRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(resp);
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 });
 
 dishRouter.route("/:dishId")
@@ -54,9 +48,7 @@ dishRouter.route("/:dishId")
         res.setHeader("Content-Type","application/json");
         res.json(dish);
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .post((req,res,next) => {
     res.statusCode = 403;
@@ -71,9 +63,7 @@ dishRouter.route("/:dishId")
         res.setHeader("Content-Type","application/json");
         res.json(dish);
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .delete((req, res, next) => {
     Dishes.findByIdAndRemove(req.params.dishId)
@@ -82,9 +72,7 @@ dishRouter.route("/:dishId")
         res.setHeader("Content-Type","application/json");
         res.json(resp);
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 });
 
 dishRouter.route("/:dishId/comments")
@@ -99,9 +87,7 @@ dishRouter.route("/:dishId/comments")
             err = new Error("Dish " + req.params.dishId + " not found");
         }
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .post((req,res,next) => {
     Dishes.findById(req.params.dishId)
@@ -114,14 +100,14 @@ dishRouter.route("/:dishId/comments")
                 res.setHeader("Content-Type","application/json");
                 res.json(dish);
             }, 
-            (err)=>{ next(err); });
+            (err)=> next(err) );
         }else{
             err = new Error("Dish " + req.params.dishId + " not found");
             err.status = 404;
             return next(err);
         }
-    },
-    (err)=>{ next(err); });
+    }, (err)=> next(err) )
+    .catch((err)=> next(err) );
 })
 .put((req, res, next) => {
    res.statusCode = 403;
@@ -146,11 +132,8 @@ dishRouter.route("/:dishId/comments")
             err.status = 404;
             return next(err);
         }
-    },
-    (err)=> next(err))
-    .catch((err)=>{
-        next(err);
-    });
+    }, (err)=> next(err))
+    .catch((err)=> next(err) );
 });
 
 dishRouter.route('/:dishId/comments/:commentId')

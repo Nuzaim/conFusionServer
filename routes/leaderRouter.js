@@ -14,9 +14,7 @@ leaderRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(leaders);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .post((req,res,next) => {
     Leaders.create(req.body)
@@ -25,9 +23,7 @@ leaderRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(leaders);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .put((req, res, next) => {
     res.statusCode = 403;
@@ -40,9 +36,7 @@ leaderRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(resp);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 });
 
 leaderRouter.route("/:leaderId")
@@ -53,9 +47,7 @@ leaderRouter.route("/:leaderId")
         res.setHeader("Content-Type","application/json");
         res.json(leader);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .post((req,res,next) => {
     res.statusCode = 403;
@@ -70,9 +62,7 @@ leaderRouter.route("/:leaderId")
         res.setHeader("Content-Type","application/json");
         res.json(leader);
     })
-    .catch((err)=>{ 
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .delete((req, res, next) => {
     Leaders.findByIdAndRemove(req.params.leaderId)
@@ -81,9 +71,7 @@ leaderRouter.route("/:leaderId")
         res.setHeader("Content-Type","application/json");
         res.json(resp);
     })
-    .catch((err)=>{
-        next(err);
-    }); 
+    .catch((err)=> next(err) );
 });
 
 module.exports = leaderRouter;

@@ -14,9 +14,7 @@ promotionRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(promotions);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .post((req,res,next) => {
     Promotions.create(req.body)
@@ -25,9 +23,7 @@ promotionRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(promotion);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .put((req, res, next) => {
     res.statusCode = 403;
@@ -40,9 +36,7 @@ promotionRouter.route("/")
         res.setHeader("Content-Type","application/json");
         res.json(resp);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 });
 
 promotionRouter.route("/:promotionId")
@@ -53,9 +47,7 @@ promotionRouter.route("/:promotionId")
         res.setHeader("Content-Type","application/json");
         res.json(promotion);
     })
-    .catch((err) => {
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .post((req,res,next) => {
     res.statusCode = 403;
@@ -70,9 +62,7 @@ promotionRouter.route("/:promotionId")
         res.setHeader("Content-Type","application/json");
         res.json(promotion);
     })
-    .catch((err)=>{ 
-        next(err);
-    });
+    .catch((err)=> next(err) );
 })
 .delete((req, res, next) => {
     Promotions.findByIdAndRemove(req.params.promotionId)
@@ -81,9 +71,7 @@ promotionRouter.route("/:promotionId")
         res.setHeader("Content-Type","application/json");
         res.json(resp);
     })
-    .catch((err)=>{
-        next(err);
-    });
+    .catch((err)=> next(err) );
 });
 
 module.exports = promotionRouter;

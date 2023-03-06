@@ -28,8 +28,10 @@ const leaderSchema = new Schema({
         type : Boolean,
         required : true
     }
+},{
+    timestamps : true
 });
 
-var Leaders = new mongoose.model("Leader", leaderSchema);
+var Leaders = mongoose.model("Leader", leaderSchema);
 
 module.exports = Leaders;
