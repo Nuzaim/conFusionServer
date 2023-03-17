@@ -21,13 +21,31 @@ router.post('/signup',(req,res,next)=>{
     if(err){
       res.statusCode = 500;
       res.setHeader("Content-Type","application/json");
+      console.log("before err");
       res.json({err: err});
     }else{
-      passport.authenticate("local")(req,res,() =>{
-        res.statusCode = 200;
+      if (req.body.firstname)
+        Users.firstname = req.body.firstname;
+      if (req.body.lastname)
+        Users.lastname = req.body.lastname;
+      Users.save()
+      .then((dish)=>{
+        /*
+        Dishes.findById(dish._id)
+        .populate("comments.author")
+        .then(dish => {
+            res.statusCode(200);
+            res.setHeader("Content-Type","application/json");
+            res.json(dish);
+        })
+        */
+        res.statusCode(200);
         res.setHeader("Content-Type","application/json");
-        res.json({status : "Registration Successful!",user : user});
-      });
+        res.json(dish);
+      }, 
+      (err)=> { 
+        console.log("err");
+        return next(err)} )
     }
   });
 });
